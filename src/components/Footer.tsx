@@ -1,4 +1,5 @@
 import { Github, Linkedin, Mail } from "lucide-react";
+import { Link } from "react-router-dom";
 import faviconImg from "@/assets/favicon.png";
 import logoImg from "@/assets/logo.png";
 
@@ -17,10 +18,21 @@ const Footer = () => {
             </p>
           </div>
           <div>
-            <p className="font-display font-semibold text-white/80 mb-3 text-sm uppercase tracking-wider">Quick Links</p>
+            <p className="font-display font-semibold text-white/80 mb-3 text-sm uppercase tracking-wider">Pages</p>
             <div className="space-y-2">
-              {["About", "Experience", "Projects", "Skills", "Contact"].map((l) => (
-                <a key={l} href={`#${l.toLowerCase()}`} className="block text-sm text-white/40 hover:text-white/80 transition-colors">{l}</a>
+              {[
+                { label: "Home", href: "/" },
+                { label: "Projects", href: "/projects" },
+                { label: "Courses", href: "/courses" },
+                { label: "Contact", href: "/contact" },
+              ].map((l) => (
+                <Link
+                  key={l.href}
+                  to={l.href}
+                  className="block text-sm text-white/40 hover:text-white/80 transition-colors"
+                >
+                  {l.label}
+                </Link>
               ))}
             </div>
           </div>
@@ -38,8 +50,13 @@ const Footer = () => {
                 { icon: Linkedin, href: "https://www.linkedin.com/in/stephen-mulingwa" },
                 { icon: Mail, href: "mailto:mulingwastephen200@gmail.com" },
               ].map((s, i) => (
-                <a key={i} href={s.href} target="_blank" rel="noopener noreferrer"
-                  className="w-9 h-9 rounded-lg bg-white/10 flex items-center justify-center text-white/40 hover:text-white hover:bg-white/20 transition-all">
+                <a
+                  key={i}
+                  href={s.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-9 h-9 rounded-lg bg-white/10 flex items-center justify-center text-white/40 hover:text-white hover:bg-white/20 transition-all"
+                >
                   <s.icon className="w-4 h-4" />
                 </a>
               ))}
