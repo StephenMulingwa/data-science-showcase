@@ -92,7 +92,7 @@ const HeroSection = () => {
             transition={{ delay: 0.9 }}
             className="flex flex-col sm:flex-row gap-4"
           >
-            <a href="#contact">
+            <a href="/contact">
               <Button variant="hero" size="lg" className="w-full sm:w-auto">
                 Work with Me
               </Button>
