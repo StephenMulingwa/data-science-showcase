@@ -112,7 +112,7 @@ const SkillsSection = () => {
                         animate={isInView ? { width: `${skill.level}%` } : {}}
                         transition={{ duration: 1.2, delay: 0.4 + j * 0.08, ease: "easeOut" }}
                         className="h-full rounded-full"
-                        style={{ background: `linear-gradient(to right, ${cat.accent}, ${cat.accentLight.replace("0.1", "1")})`, background: cat.accent }}
+                        style={{ background: cat.accent }}
                       />
                     </div>
                   </div>
