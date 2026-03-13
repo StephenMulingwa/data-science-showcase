@@ -10,7 +10,7 @@ const experiences = [
     period: "January 2026 – Present",
     description:
       "Analyzing large-scale logistics and telematics data to improve fleet performance, driver safety, and operational efficiency. Building interactive dashboards and predictive analytics solutions.",
-    highlights: ["Python, SQL, Power BI", "Telematics Analytics", "Predictive Models", "Fleet Optimisation"],
+    highlights: ["Python, SQL, Power BI", "Telematics Analytics", "Predictive Models", "Fleet Optimization"],
     current: true,
   },
   {
@@ -48,109 +48,83 @@ const education = [
     title: "BSc Statistics",
     institution: "Jomo Kenyatta University of Agriculture and Technology",
     description: "Statistical methods, probability, regression analysis, and econometrics.",
-    emoji: "🎓",
+    icon: "🎓",
   },
   {
     title: "Data Science",
     institution: "Moringa School",
     description: "Intensive program in Python, SQL, machine learning, and data preprocessing.",
-    emoji: "💻",
+    icon: "💻",
   },
   {
-    title: "Certificate — Data Analysis (SPSS)",
+    title: "Certificate in Data Analysis (SPSS)",
     institution: "JKUAT",
     description: "Data collection, management, and statistical analysis using SPSS.",
-    emoji: "📊",
+    icon: "📊",
   },
 ];
 
 const ExperienceSection = () => {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-80px" });
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="experience" className="section-padding bg-background" ref={ref}>
-      <div className="max-w-5xl mx-auto">
-
-        {/* Header */}
+    <section id="experience" className="section-padding bg-background">
+      <div className="max-w-5xl mx-auto" ref={ref}>
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="mb-16"
+          className="text-center mb-16"
         >
-          <p className="font-body text-xs font-semibold tracking-[0.25em] uppercase text-primary mb-4">Career Journey</p>
-          <h2 className="font-display text-foreground leading-tight" style={{ fontSize: "clamp(1.8rem, 3.5vw, 2.8rem)", fontWeight: 700 }}>
-            Experience &{" "}
-            <span style={{ fontStyle: "italic", background: "linear-gradient(135deg, hsl(var(--primary)), hsl(var(--teal)))", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>
-              Education
-            </span>
+          <p className="text-primary font-display text-sm tracking-widest uppercase mb-2">Career Journey</p>
+          <h2 className="text-3xl md:text-5xl font-display font-bold text-foreground">
+            Experience & <span className="text-gradient">Education</span>
           </h2>
         </motion.div>
 
-        {/* Timeline */}
-        <div className="relative space-y-5 mb-20">
+        {/* Experience Timeline */}
+        <div className="relative space-y-6 mb-20">
           {/* Vertical line */}
-          <div className="absolute left-4 top-4 bottom-4 w-px"
-            style={{ background: "linear-gradient(to bottom, hsl(var(--primary)), hsl(var(--primary) / 0.1))" }} />
+          <div className="absolute left-5 top-0 bottom-0 w-0.5 bg-gradient-to-b from-primary via-primary/30 to-transparent" />
 
           {experiences.map((exp, i) => (
             <motion.div
               key={i}
-              initial={{ opacity: 0, x: -24 }}
+              initial={{ opacity: 0, x: -20 }}
               animate={isInView ? { opacity: 1, x: 0 } : {}}
-              transition={{ duration: 0.5, delay: i * 0.12 }}
-              className="relative pl-12"
+              transition={{ duration: 0.5, delay: i * 0.15 }}
+              className="relative pl-14"
             >
-              {/* Dot */}
-              <div
-                className="absolute left-4 -translate-x-1/2 w-3 h-3 rounded-full top-6 z-10"
-                style={{
-                  background: exp.current ? "hsl(var(--primary))" : "hsl(var(--border))",
-                  border: "2px solid hsl(var(--background))",
-                  boxShadow: exp.current ? "0 0 0 3px hsl(var(--primary) / 0.2)" : "none",
-                }}
-              />
+              {/* Timeline dot */}
+              <div className={`absolute left-5 -translate-x-1/2 w-4 h-4 rounded-full border-2 border-white shadow-sm z-10 mt-5 ${exp.current ? 'bg-primary' : 'bg-border'}`} />
 
-              <div
-                className="bg-white rounded-2xl p-6 border border-border card-hover"
-                style={{ boxShadow: "0 2px 12px hsl(220 20% 8% / 0.05)" }}
-              >
-                <div className="flex items-start justify-between gap-4 flex-wrap mb-3">
-                  <div>
-                    <div className="flex items-center gap-2.5 mb-1">
+              <div className="bg-white rounded-2xl p-6 border border-border shadow-sm card-hover glow-border">
+                <div className="flex items-start justify-between gap-4 flex-wrap">
+                  <div className="flex-1">
+                    <div className="flex items-center gap-2 mb-1">
                       {exp.logo ? (
-                        <img src={logoImg} alt="TaiStat" className="w-4 h-4 rounded object-cover" />
+                        <img src={logoImg} alt="TaiStat" className="w-5 h-5 rounded object-cover" />
                       ) : (
                         <Briefcase className="w-4 h-4 text-primary" />
                       )}
-                      <h3 className="font-display font-bold text-foreground text-base">{exp.title}</h3>
+                      <h3 className="text-lg font-display font-bold text-foreground">{exp.title}</h3>
                       {exp.current && (
-                        <span className="font-body text-xs px-2.5 py-0.5 rounded-full font-semibold"
-                          style={{ background: "hsl(var(--primary) / 0.1)", color: "hsl(var(--primary))", border: "1px solid hsl(var(--primary) / 0.2)" }}>
-                          Current
-                        </span>
+                        <span className="text-xs px-2 py-0.5 rounded-full bg-primary/10 text-primary border border-primary/20 font-medium">Current</span>
                       )}
                     </div>
-                    <p className="font-body font-medium text-sm text-primary">{exp.company}</p>
+                    <p className="text-primary font-medium text-sm mb-1">{exp.company}</p>
                   </div>
-                  <div className="flex items-center gap-1.5 font-body text-xs text-muted-foreground px-3 py-1.5 rounded-full"
-                    style={{ background: "hsl(var(--secondary))", border: "1px solid hsl(var(--border))" }}>
+                  <div className="flex items-center gap-1.5 text-xs text-muted-foreground bg-secondary px-3 py-1.5 rounded-full">
                     <Calendar className="w-3 h-3" />
                     {exp.period}
                   </div>
                 </div>
 
-                <p className="font-body text-sm text-muted-foreground leading-relaxed mb-4">{exp.description}</p>
-
+                <p className="text-sm text-muted-foreground leading-relaxed mb-4 mt-2">{exp.description}</p>
                 <div className="flex flex-wrap gap-2">
                   {exp.highlights.map((h, j) => (
-                    <span key={j} className="font-body text-xs px-3 py-1 rounded-full font-medium"
-                      style={{
-                        background: "hsl(var(--primary) / 0.07)",
-                        color: "hsl(var(--primary))",
-                        border: "1px solid hsl(var(--primary) / 0.15)",
-                      }}>
+                    <span key={j} className="text-xs px-3 py-1 rounded-full bg-primary/8 text-primary border border-primary/15 font-medium">
                       {h}
                     </span>
                   ))}
@@ -164,30 +138,27 @@ const ExperienceSection = () => {
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.5 }}
+          transition={{ duration: 0.6, delay: 0.6 }}
         >
           <div className="flex items-center gap-3 mb-8">
-            <div className="w-10 h-10 rounded-xl flex items-center justify-center"
-              style={{ background: "hsl(var(--primary) / 0.08)", border: "1px solid hsl(var(--primary) / 0.15)" }}>
+            <div className="w-10 h-10 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center">
               <GraduationCap className="w-5 h-5 text-primary" />
             </div>
-            <h3 className="font-display font-bold text-foreground text-xl">Education</h3>
+            <h3 className="text-2xl font-display font-bold text-foreground">Education</h3>
           </div>
-
           <div className="grid md:grid-cols-3 gap-5">
             {education.map((edu, i) => (
               <motion.div
                 key={i}
                 initial={{ opacity: 0, y: 20 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.4, delay: 0.6 + i * 0.1 }}
-                className="bg-white rounded-2xl p-6 border border-border card-hover"
-                style={{ boxShadow: "0 2px 12px hsl(220 20% 8% / 0.05)" }}
+                transition={{ duration: 0.4, delay: 0.7 + i * 0.1 }}
+                className="bg-white rounded-2xl p-6 border border-border shadow-sm card-hover glow-border"
               >
-                <span className="text-3xl mb-4 block">{edu.emoji}</span>
-                <h4 className="font-display font-bold text-foreground mb-1 text-sm">{edu.title}</h4>
-                <p className="font-body text-xs text-primary font-semibold mb-3 leading-tight">{edu.institution}</p>
-                <p className="font-body text-sm text-muted-foreground leading-relaxed">{edu.description}</p>
+                <span className="text-3xl mb-3 block">{edu.icon}</span>
+                <h4 className="font-display font-bold text-foreground mb-1">{edu.title}</h4>
+                <p className="text-sm text-primary font-medium mb-3">{edu.institution}</p>
+                <p className="text-sm text-muted-foreground">{edu.description}</p>
               </motion.div>
             ))}
           </div>

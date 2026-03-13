@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { ArrowDown, Download, MapPin, Star } from "lucide-react";
+import { ArrowDown, Download, Briefcase } from "lucide-react";
 import me2 from "@/assets/me2.jpeg";
 import logoImg from "@/assets/logo.png";
 
@@ -8,234 +8,164 @@ const HeroSection = () => {
   return (
     <section
       id="home"
-      className="relative overflow-hidden hero-section"
-      style={{ minHeight: "100vh" }}
+      className="relative min-h-screen flex items-center justify-center overflow-hidden hero-section"
     >
-      {/* Subtle geometric background elements */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {/* Large faint circle top-right */}
+      {/* Animated background particles */}
+      <div className="absolute inset-0 overflow-hidden">
+        {[...Array(20)].map((_, i) => (
+          <motion.div
+            key={i}
+            className="absolute w-1 h-1 rounded-full"
+            style={{
+              background: "hsl(174 72% 55% / 0.4)",
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+            }}
+            animate={{
+              y: [0, -30, 0],
+              opacity: [0.2, 0.8, 0.2],
+            }}
+            transition={{
+              duration: 3 + Math.random() * 4,
+              repeat: Infinity,
+              delay: Math.random() * 3,
+            }}
+          />
+        ))}
+        {/* Grid pattern */}
         <div
-          className="absolute -top-40 -right-40 w-[700px] h-[700px] rounded-full opacity-5"
-          style={{ background: "radial-gradient(circle, hsl(215 85% 60%), transparent 70%)" }}
-        />
-        {/* Bottom-left accent */}
-        <div
-          className="absolute -bottom-20 -left-20 w-[500px] h-[500px] rounded-full opacity-5"
-          style={{ background: "radial-gradient(circle, hsl(42 85% 55%), transparent 70%)" }}
-        />
-        {/* Thin grid lines */}
-        <div
-          className="absolute inset-0 opacity-[0.03]"
+          className="absolute inset-0 opacity-5"
           style={{
-            backgroundImage:
-              "linear-gradient(hsl(0 0% 100%) 1px, transparent 1px), linear-gradient(90deg, hsl(0 0% 100%) 1px, transparent 1px)",
-            backgroundSize: "80px 80px",
+            backgroundImage: "linear-gradient(hsl(174 72% 55%) 1px, transparent 1px), linear-gradient(90deg, hsl(174 72% 55%) 1px, transparent 1px)",
+            backgroundSize: "60px 60px",
           }}
-        />
-        {/* Diagonal decorative line */}
-        <div
-          className="absolute top-0 right-0 w-px h-full opacity-10"
-          style={{ background: "linear-gradient(to bottom, transparent, hsl(42 85% 55%), transparent)", marginRight: "33%" }}
         />
       </div>
 
-      {/* Main Content */}
-      <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-12 lg:px-20 pt-32 pb-0 flex flex-col lg:flex-row items-center gap-16 min-h-screen">
-
-        {/* ── LEFT: Text ── */}
-        <div className="flex-1 max-w-2xl">
-          {/* Eyebrow tag */}
-          <motion.div
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.15, duration: 0.6 }}
-            className="inline-flex items-center gap-2.5 mb-8"
-          >
-            <img src={logoImg} alt="TaiStat" className="w-7 h-7 rounded-lg object-cover" />
-            <span className="text-xs font-body font-semibold tracking-[0.2em] uppercase"
-              style={{ color: "hsl(42 85% 65%)" }}>
-              TaiStat Firm · Nairobi, Kenya
-            </span>
-          </motion.div>
-
-          {/* Headline */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3, duration: 0.8 }}
-          >
-            <p className="font-body text-white/50 text-lg mb-2">Hello, I'm</p>
-            <h1 className="font-display text-white leading-[1.05] mb-5"
-              style={{ fontSize: "clamp(3rem, 8vw, 6rem)", fontWeight: 700 }}>
-              Stephen<br />
-              <span className="text-gradient-hero italic">Mulingwa</span>
-            </h1>
-          </motion.div>
-
-          {/* Role line */}
+      {/* Content */}
+      <div className="relative z-10 max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center py-32">
+        {/* Text */}
+        <div>
+          {/* TaiStat Badge */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.55, duration: 0.6 }}
-            className="flex items-center gap-4 mb-8"
+            transition={{ delay: 0.2 }}
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/20 bg-white/10 mb-6"
           >
-            <div className="h-px w-10 opacity-40" style={{ background: "hsl(42 85% 55%)" }} />
-            <p className="font-body font-medium text-white/70 text-lg tracking-wide">
-              Data Scientist &amp; AI Consultant
-            </p>
+            <img src={logoImg} alt="TaiStat" className="w-5 h-5 rounded object-cover" />
+            <span className="text-xs text-white/70 font-display font-medium tracking-wider">TaiStat Firm</span>
           </motion.div>
 
-          {/* Bio */}
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
+          <motion.h1
+            initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.7, duration: 0.6 }}
-            className="font-body text-white/50 text-base leading-[1.85] max-w-lg mb-10"
+            transition={{ delay: 0.4, duration: 0.8 }}
+            className="text-5xl md:text-6xl lg:text-7xl font-display font-bold mb-4 leading-tight text-white"
           >
-            Transforming complex data into intelligent, actionable solutions.
-            Building AI-powered analytics platforms and predictive models that drive smarter business decisions.
-          </motion.p>
+            Stephen<br />
+            <span className="text-gradient-hero glow-text">Mulingwa</span>
+          </motion.h1>
 
-          {/* CTAs */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.85 }}
-            className="flex flex-col sm:flex-row gap-4 mb-14"
+            transition={{ delay: 0.6 }}
+            className="flex items-center gap-3 mb-6"
+          >
+            <div className="h-px w-8 bg-primary/60" />
+            <p className="text-white/70 font-display text-lg tracking-wide">Data Scientist & AI Consultant</p>
+          </motion.div>
+
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.7 }}
+            className="text-white/50 max-w-xl mb-10 text-base leading-relaxed"
+          >
+            Transforming complex data into intelligent, actionable solutions. Building AI-powered analytics platforms and predictive models that drive smarter decisions.
+          </motion.p>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.9 }}
+            className="flex flex-col sm:flex-row gap-4"
           >
             <a href="/contact">
-              <Button
-                size="lg"
-                className="w-full sm:w-auto font-body font-semibold rounded-full px-8 text-sm tracking-wide transition-all duration-300 hover:scale-105"
-                style={{
-                  background: "linear-gradient(135deg, hsl(42 85% 55%), hsl(38 80% 48%))",
-                  color: "hsl(220 25% 10%)",
-                  boxShadow: "0 8px 32px hsl(42 85% 55% / 0.3)",
-                  border: "none",
-                }}
-              >
+              <Button variant="hero" size="lg" className="w-full sm:w-auto">
                 Work with Me
               </Button>
             </a>
             <a href="/STEPHEN_MULINGWA-RESUME.pdf" download>
-              <Button
-                variant="ghost"
-                size="lg"
-                className="w-full sm:w-auto font-body font-medium rounded-full px-8 text-sm tracking-wide border text-white/70 hover:text-white hover:bg-white/10 transition-all duration-300"
-                style={{ borderColor: "hsl(0 0% 100% / 0.2)" }}
-              >
+              <Button variant="hero-outline" size="lg" className="w-full sm:w-auto border-white/30 text-white hover:bg-white/10">
                 <Download className="w-4 h-4" />
                 Download Resume
               </Button>
             </a>
           </motion.div>
 
-          {/* Stats row */}
+          {/* Stats */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1 }}
-            className="flex items-center gap-10"
+            transition={{ delay: 1.1 }}
+            className="flex gap-8 mt-12"
           >
             {[
-              { value: "5+", label: "Years Experience" },
-              { value: "50+", label: "Projects Delivered" },
-              { value: "3+", label: "Industry Sectors" },
+              { value: "5+", label: "Years Exp." },
+              { value: "50+", label: "Projects" },
+              { value: "3+", label: "Sectors" },
             ].map((s, i) => (
-              <div key={i}>
-                <p className="font-display font-bold text-white text-3xl">{s.value}</p>
-                <p className="font-body text-white/40 text-xs mt-0.5 tracking-wide">{s.label}</p>
+              <div key={i} className="text-center">
+                <p className="text-2xl font-display font-bold text-white">{s.value}</p>
+                <p className="text-xs text-white/40 mt-0.5">{s.label}</p>
               </div>
             ))}
           </motion.div>
         </div>
 
-        {/* ── RIGHT: Photo ── */}
+        {/* Photo */}
         <motion.div
-          initial={{ opacity: 0, x: 40 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ delay: 0.4, duration: 0.9 }}
-          className="relative flex-shrink-0 flex justify-center lg:self-end"
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ delay: 0.5, duration: 0.8 }}
+          className="flex justify-center"
         >
-          {/* Decorative ring behind photo */}
-          <div
-            className="absolute inset-0 rounded-[2.5rem] scale-105"
-            style={{
-              background: "linear-gradient(145deg, hsl(42 85% 55% / 0.15), hsl(215 85% 50% / 0.1))",
-              filter: "blur(30px)",
-            }}
-          />
-
-          {/* Photo frame */}
-          <div
-            className="relative overflow-hidden"
-            style={{
-              width: "clamp(280px, 30vw, 400px)",
-              height: "clamp(360px, 40vw, 520px)",
-              borderRadius: "40% 60% 55% 45% / 45% 40% 60% 55%",
-              border: "2px solid hsl(42 85% 55% / 0.3)",
-            }}
-          >
-            <img
-              src={me2}
-              alt="Stephen Mulingwa"
-              className="w-full h-full object-cover object-top"
-            />
-            {/* Inner overlay gradient */}
-            <div
-              className="absolute inset-0"
-              style={{
-                background: "linear-gradient(to top, hsl(220 25% 10% / 0.6) 0%, transparent 50%)",
-              }}
-            />
+          <div className="relative">
+            {/* Glow ring */}
+            <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-primary/40 to-cyan-400/20 blur-3xl scale-110" />
+            <div className="relative rounded-2xl overflow-hidden border-2 border-white/10 shadow-2xl"
+              style={{ width: 380, height: 480 }}>
+              <img
+                src={me2}
+                alt="Stephen Mulingwa"
+                className="w-full h-full object-cover object-top"
+              />
+              {/* Overlay card */}
+              <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent p-6">
+                <p className="text-white font-display font-bold text-lg">Stephen Mulingwa</p>
+                <div className="flex items-center gap-2 mt-1">
+                  <Briefcase className="w-3.5 h-3.5 text-primary" />
+                  <p className="text-white/60 text-sm">Data Scientist Consultant</p>
+                </div>
+              </div>
+            </div>
           </div>
-
-          {/* Floating name card */}
-          <motion.div
-            animate={{ y: [0, -8, 0] }}
-            transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-            className="absolute -bottom-4 -left-6 bg-white rounded-2xl shadow-2xl px-5 py-3.5 flex items-center gap-3"
-            style={{ boxShadow: "0 20px 60px hsl(215 85% 35% / 0.25)" }}
-          >
-            <div className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse" />
-            <div>
-              <p className="font-display font-bold text-foreground text-sm">Available for Projects</p>
-              <p className="font-body text-muted-foreground text-xs mt-0.5 flex items-center gap-1">
-                <MapPin className="w-3 h-3" /> Nairobi, Kenya
-              </p>
-            </div>
-          </motion.div>
-
-          {/* Floating rating card */}
-          <motion.div
-            animate={{ y: [0, 8, 0] }}
-            transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-            className="absolute -top-4 -right-4 bg-white rounded-2xl shadow-xl px-4 py-3 flex items-center gap-2.5"
-            style={{ boxShadow: "0 12px 40px hsl(42 85% 55% / 0.2)" }}
-          >
-            <div
-              className="w-8 h-8 rounded-xl flex items-center justify-center"
-              style={{ background: "linear-gradient(135deg, hsl(42 85% 55%), hsl(38 80% 48%))" }}
-            >
-              <Star className="w-4 h-4 text-white fill-white" />
-            </div>
-            <div>
-              <p className="font-display font-bold text-foreground text-sm">Top Rated</p>
-              <p className="font-body text-xs text-muted-foreground">Data Scientist</p>
-            </div>
-          </motion.div>
         </motion.div>
       </div>
 
-      {/* Wave divider */}
-      <div className="relative z-10 w-full" style={{ marginTop: "-1px", lineHeight: 0 }}>
-        <svg viewBox="0 0 1440 90" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full">
-          <path
-            d="M0 45C240 90 480 0 720 45C960 90 1200 0 1440 45V90H0V45Z"
-            fill="hsl(0 0% 100%)"
-          />
-        </svg>
-      </div>
+      {/* Scroll indicator */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.5 }}
+        className="absolute bottom-8 left-1/2 -translate-x-1/2"
+      >
+        <motion.div animate={{ y: [0, 8, 0] }} transition={{ duration: 2, repeat: Infinity }}>
+          <ArrowDown className="w-5 h-5 text-white/30" />
+        </motion.div>
+      </motion.div>
     </section>
   );
 };
